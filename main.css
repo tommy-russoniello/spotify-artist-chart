@@ -1,0 +1,11 @@
+#error, .table {
+  display: none;
+}
+
+th.no-sort {
+  pointer-events: none;
+}
+
+a {
+  color: inherit;
+}
