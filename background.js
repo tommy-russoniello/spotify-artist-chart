@@ -18,13 +18,16 @@ chrome.webRequest.onSendHeaders.addListener(
 );
 
 chrome.action.onClicked.addListener(function (tab) {
-  artist = tab.url.match(/https:\/\/open.spotify.com\/artist\/(.+)/)[1]
-  chrome.storage.local.set({ artist: artist}, function() {
-    chrome.tabs.create({
-      url: 'index.html',
-      selected: true,
-    })
-  });
+  artist_id = tab.url.match(/https:\/\/open.spotify.com\/artist\/(.+)/)[1]
+  artist_name = tab.title.match(/(.+) \| Spotify/)[1]
+  chrome.storage.local.set(
+    { artist_id: artist_id, artist_name: artist_name},
+    function() {
+      chrome.tabs.create({
+        url: 'index.html',
+        selected: true,
+      })
+    });
 })
 
 // Wrap in an onInstalled callback in order to avoid unnecessary work

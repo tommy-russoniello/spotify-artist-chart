@@ -9,3 +9,12 @@ th.no-sort {
 a {
   color: inherit;
 }
+
+.removed {
+  color: red;
+}
+
+.repo-link {
+  display: flex;
+  justify-content: flex-end;
+}
