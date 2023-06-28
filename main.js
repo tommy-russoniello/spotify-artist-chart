@@ -117,6 +117,12 @@ $(document).ready(function () {
     return existingTrack.raw_name.length >= newTrack.raw_name.length
   }
 
+  // Track data shows the track is by only the current artist.
+  function trackDataMatchesArtist (trackData) {
+    return trackData.track.artists.items.length === 1 &&
+      trackData.track.artists.items[0].uri.split(':')[2] === artistId
+  }
+
   // Tracks have similar durations if they're within 10 seconds of eachother.
   function tracksHaveSimilarDurations (trackA, trackB) {
     return Math.abs(trackA.duration - trackB.duration) < 10000
@@ -220,6 +226,8 @@ $(document).ready(function () {
         // maybe make it so you can see a per album view?
         // (like total plays per album)
         release.tracks.forEach(trackData => {
+          if (!trackDataMatchesArtist(trackData)) return
+
           const newTrack = {}
           const trackName = CleanUpName(trackData.track.name)
           assignTrackFields(newTrack, trackData, trackName, release)
