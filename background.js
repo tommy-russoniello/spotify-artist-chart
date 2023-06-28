@@ -18,7 +18,7 @@ chrome.webRequest.onSendHeaders.addListener(
 )
 
 chrome.action.onClicked.addListener(function (tab) {
-  const artistId = tab.url.match(/https:\/\/open.spotify.com\/artist\/(.+)/)[1]
+  const artistId = tab.url.match(/https:\/\/open.spotify.com\/artist\/(\w+)/)[1]
   const artistName = tab.title.match(/(.+) \| Spotify/)[1]
   chrome.storage.local.set(
     { artistId: artistId, artistName: artistName },
