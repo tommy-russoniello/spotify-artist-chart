@@ -178,6 +178,8 @@ $(document).ready(function () {
           console.log(data)
           displayError(data.responseText)
         }
+        // TODO: Also pull compilation albums since sometimes there are unique
+        // songs on them. will have to be careful to not break deduping though.
       })
     ]
     $.when.apply($, promises).then(function () {
